@@ -26,6 +26,7 @@ var _request = function(method, endpoint, query = {}, payload = {}, headers = {}
 			return response.body;
 		})
 		.catch((err) => {
+			console.log(endpoint);
 			console.log(err.response.body);
 			console.log(err.status);
 			throw 'GITHUB API FAILED';
