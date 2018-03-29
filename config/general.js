@@ -4,6 +4,6 @@ module.exports = {
 	},
 	"status_checks": {
 		//All time intervals in milli seconds
-		"time_required": "50"
+		"time_required": "2000"
 	}
 };

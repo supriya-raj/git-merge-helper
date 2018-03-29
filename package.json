@@ -1,18 +1,19 @@
 {
   "name": "git-merge-helper",
   "version": "1.0.0",
-  "description": "A helper package to merge release-ready prs to master after all the mandatory status checks have passed",
+  "description": "A helper package to merge prs into master after all the mandatory status checks have passed",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "get:user": "node -e \"require('./src/get_user_data')()\"",
     "merge": "node -e \"require('./src/merge_prs')()\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli-progress": "^1.8.0",
     "colors": "^1.2.1",
     "lodash": "^4.17.5",
+    "progress": "^2.0.0",
     "promise-poller": "^1.6.0",
     "superagent": "^3.8.2"
   }

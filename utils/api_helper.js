@@ -2,6 +2,7 @@ var superagent = require('superagent');
 var _isEmpty = require('lodash').isEmpty;
 
 var config = require('../config');
+var colorLogger = require("./color_logger");
 
 const GIT_HOST = 'https://api.github.com';
 
@@ -26,9 +27,9 @@ var _request = function(method, endpoint, query = {}, payload = {}, headers = {}
 			return response.body;
 		})
 		.catch((err) => {
-			console.log(endpoint);
-			console.log(err.response.body);
-			console.log(err.status);
+			colorLogger(endpoint, "red");
+			//colorLogger(err.response.body, "red");
+			colorLogger(err.status, "red");
 			throw 'GITHUB API FAILED';
 		})
 };

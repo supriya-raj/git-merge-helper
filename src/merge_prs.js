@@ -8,7 +8,7 @@ var colorLogger = require("../utils/color_logger");
 
 var getPrsToBeMerged = function() {
 	var prs_to_be_merged = getPrs({
-		//'labels': config['merge_pr_prerequisites'].labels
+		'labels': config['merge_pr_prerequisites'].labels
 	});
 
 	return prs_to_be_merged;
@@ -26,16 +26,24 @@ var mergePrs = function() {
 
 		prs_to_be_merged.forEach((pr) => {
 
+			colorLogger("***********************************", "magenta");
+			colorLogger("Trying to merge PR#" + pr.number, "blue");
+
 			//Merge base branch into the pr
 			mergeBranch({head: pr.base, base: pr.head})
 			.then(() => {
+				colorLogger("Waiting for status checks to pass ...", "blue");
 				return waitForStatus(pr, 'success')
 			})
 			.then(() => {
-				console.log("Merged PR !!Yay!!!");
+				//return mergeBranch(pr);
+			})
+			.then(() => {
+				colorLogger("Merged PR #" + pr.number + " successfully !!", "green");
 			})
 			.catch((err) => {
-				//do ntn
+				colorLogger("Error merging PR #" + pr.number + "..Skipping it!!", "red");
+				console.log(err);
 			})
 		})
 	})
