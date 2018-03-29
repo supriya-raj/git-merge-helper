@@ -2,7 +2,7 @@ var config = require('../config');
 var APIHelper = require('../utils/api_helper');
 var colorLogger = require('../utils/color_logger');
 
-const MERGE_ENDPOINT = `/repos/${config.repo.name}/${config.repo.owner}/merges`;
+const MERGE_ENDPOINT = `/repos/${config.repo.owner}/${config.repo.name}/merges`;
 
 let mergeHeadIntoBase = function({head, base}) {
 	return APIHelper.post(MERGE_ENDPOINT, null, {

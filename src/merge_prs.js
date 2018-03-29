@@ -1,4 +1,4 @@
-var getPrs = require("./get_prs");
+var searchGit = require("./search_git");
 var mergeBranch = require("./merge_head_into_base");
 var getSinglePr = require("./get_single_pr");
 var waitForStatus = require("./wait_for_status");
@@ -7,16 +7,18 @@ var config =  require("../config");
 var colorLogger = require("../utils/color_logger");
 
 var getPrsToBeMerged = function() {
-	var prs_to_be_merged = getPrs({
-		'labels': config['merge_pr_prerequisites'].labels
+	var prs_to_be_merged = searchGit({
+		'is_pr': true,
+		'labels': `"Release+Ready"`
 	});
 
 	return prs_to_be_merged;
 };
 
 var mergePrs = function() {
-	getPrsToBeMerged().then((prs_to_be_merged) => {
+	getPrsToBeMerged().then((result) => {
 
+		var prs_to_be_merged = result.items;
 		//prs that were actually merged
 		var prs_merged = [];
 

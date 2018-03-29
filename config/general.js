@@ -1,6 +1,6 @@
 module.exports = {
 	"merge_pr_prerequisites": {
-		"labels": "Release Ready"
+		"labels": "bug"
 	},
 	"status_checks": {
 		//All time intervals in milli seconds
