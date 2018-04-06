@@ -16,7 +16,7 @@ var _request = function(method, endpoint, query = {}, payload = {}, headers = {}
 	if(_isEmpty(payload)) {
 		_headers['Content-Type'] = 'application/json';
 	}
-	console.log(query);
+
 	let _req = superagent[method.toLowerCase()](GIT_HOST + endpoint)
 		.query(query)
 		.set(_headers)
@@ -25,6 +25,7 @@ var _request = function(method, endpoint, query = {}, payload = {}, headers = {}
 	return _req
 		.then((response) => {
 			//console.log(_req);
+			//console.log(response.body);
 			return response.body;
 		})
 		.catch((err) => {

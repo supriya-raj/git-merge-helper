@@ -9,7 +9,7 @@ let searchGit = function(conditions = {}) {
 		url += 'is:pr+is:open+';
 	}
 	if(conditions.labels) {
-		q += `label:${conditions.labels}+`
+		url += `label:${conditions.labels}+`
 	}
 	url += `repo:${config.repo.owner}/${config.repo.name}`
 
